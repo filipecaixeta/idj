@@ -9,14 +9,15 @@
 class State
 {
 public:
-    State();
-    bool quitRequested();
-    void loadAssets();
-    void update(float dt);
-    void render();
+	State();
+	~State();
+	bool quitRequested();
+	void loadAssets();
+	void update(float dt);
+	void render();
 private:
-    Sprite bg;
-    bool _quitRequested;
+    Sprite *bg;
+	bool _quitRequested;
 
 };
 

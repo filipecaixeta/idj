@@ -10,23 +10,23 @@
 class Game
 {
 public:
-    Game(std::string title, int width, int height);
-    ~Game();
+	Game(std::string title, int width, int height);
+	~Game();
 
-    void run();
-    SDL_Renderer *getRenderer();
-    State &getState();
-    static Game &getInstance();
-    void init();
+	void run();
+	SDL_Renderer *getRenderer();
+	State &getState();
+	static Game &getInstance();
+	void init();
 
 private:
-    static Game *instance;
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    Uint32 nextTime;
+	static Game *instance;
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+	Uint32 nextTime;
 
-    Uint32 timeLeft();
-    State *state;
+	Uint32 timeLeft();
+	State *state;
 
 };
 

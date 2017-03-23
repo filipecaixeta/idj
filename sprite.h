@@ -8,20 +8,20 @@
 class Sprite
 {
 public:
-    Sprite();
-    Sprite(std::string file);
-    ~Sprite();
-    void open(std::string file);
-    void setClip(int x,int y,int w,int h);
-    void render(int x,int y);
-    int getWidth();
-    int getHeight();
-    bool isOpen();
+	Sprite();
+	Sprite(std::string file);
+	~Sprite();
+	void open(std::string file);
+	void setClip(int x,int y,int w,int h);
+	void render(int x,int y);
+	int getWidth();
+	int getHeight();
+	bool isOpen();
 private:
-    SDL_Texture *texture;
-    int width;
-    int height;
-    SDL_Rect clipRect;
+	SDL_Texture *texture;
+	int width;
+	int height;
+	SDL_Rect clipRect;
 };
 
 #endif // SPRITE_H
