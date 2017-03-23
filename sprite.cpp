@@ -57,7 +57,7 @@ void Sprite::render(int x,int y)
 
 	if (renderer==nullptr)
 		throw std::string("Renderer nao existe");
-	SDL_RenderCopy(renderer,texture,NULL,NULL);
+    SDL_RenderCopy(renderer,texture,clipRect,dstrect);
 }
 
 int Sprite::getWidth()
