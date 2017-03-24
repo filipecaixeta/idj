@@ -1,4 +1,5 @@
 #include "game.h"
+#include <cstdlib>
 
 Game *Game::instance = nullptr;
 
@@ -23,6 +24,8 @@ Game::Game(std::string title, int width, int height)
 	if (renderer==nullptr)
 		throw std::string("Nao foi possivel criar o renderer: ") + SDL_GetError();
 	
+    std::srand(SDL_GetTicks());
+
 	init();
 }
 

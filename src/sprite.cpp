@@ -1,13 +1,14 @@
 #include "sprite.h"
 #include "game.h"
 
-Sprite::Sprite()
+Sprite::Sprite():
+    texture(nullptr)
 {
 
 }
 
 Sprite::Sprite(std::string file):
-	texture(nullptr)
+    texture(nullptr),angle(0)
 {
 	open(file);
 }
@@ -57,7 +58,17 @@ void Sprite::render(int x,int y)
 
 	if (renderer==nullptr)
 		throw std::string("Renderer nao existe");
-    SDL_RenderCopy(renderer,texture,clipRect,dstrect);
+    if (!isOpen())
+        throw std::string("Sprite nao existe");
+
+    SDL_RenderCopyEx(renderer,texture,&clipRect,&dstrect,
+                     angle,NULL,SDL_FLIP_NONE);
+
+}
+
+Vec2 Sprite::getDimencao()
+{
+    return Vec2(this->getWidth(),this->getHeight());
 }
 
 int Sprite::getWidth()
