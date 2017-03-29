@@ -6,11 +6,12 @@
 #include <string>
 #include <game.h>
 
+
 int main (int argc, char** argv) {
 
 	try
 	{
-		Game game("Filipe A. Caixeta 10/0129706",1024,600);
+        Game game("Filipe A. Caixeta 10/0129706",1024,600);
 		game.run();
 	}
 	catch(std::string &s)

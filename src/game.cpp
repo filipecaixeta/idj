@@ -15,15 +15,23 @@ Game::Game(std::string title, int width, int height)
 	if((IMG_Init(imgFlags)&imgFlags) != imgFlags)
 		throw std::string("IMG_Init falhou: ") + IMG_GetError();
 
-	window = SDL_CreateWindow(	title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
-								width,height, SDL_WINDOW_OPENGL);
-	if (window==nullptr)
-		throw std::string("Nao foi possivel criar a janela: ") + SDL_GetError();
+    int flags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;// | SDL_WINDOW_FULLSCREEN_DESKTOP
+    window = SDL_CreateWindow(	title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
+                                width,height, flags);
+    if (window==nullptr)
+        throw std::string("Nao foi possivel criar a janela: ") + SDL_GetError();
 	
-	renderer = SDL_CreateRenderer(window, -1, SDL_WINDOW_OPENGL);
-	if (renderer==nullptr)
-		throw std::string("Nao foi possivel criar o renderer: ") + SDL_GetError();
+    renderer = SDL_CreateRenderer(window, -1, SDL_WINDOW_OPENGL);
+    if (renderer==nullptr)
+        throw std::string("Nao foi possivel criar o renderer: ") + SDL_GetError();
+
+    //Futuramente da pra configurar resolucoes maiores por essas 2 linhas
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    SDL_RenderSetLogicalSize(renderer, width, height);
 	
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
+
     std::srand(SDL_GetTicks());
 
 	init();

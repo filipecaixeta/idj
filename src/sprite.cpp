@@ -52,8 +52,8 @@ void Sprite::render(int x,int y)
 	SDL_Rect dstrect;
 	dstrect.x = x;
 	dstrect.y = y;
-	dstrect.w = clipRect.w;
-	dstrect.h = clipRect.h;
+    dstrect.w = clipRect.w;
+    dstrect.h = clipRect.h;
 	SDL_Renderer *renderer = Game::getInstance().getRenderer();
 
 	if (renderer==nullptr)

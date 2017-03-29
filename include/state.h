@@ -22,7 +22,7 @@ private:
     void input();
     void addObject(float mouseX,float mouseY);
     std::vector<std::unique_ptr<GameObject>> objectArray;
-    Sprite *bg;
+    Sprite bg;
 	bool _quitRequested;
 
 };

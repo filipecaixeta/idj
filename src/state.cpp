@@ -9,7 +9,6 @@ State::State():
 
 State::~State()
 {
-    delete bg;
     objectArray.clear();
 }
 
@@ -20,7 +19,7 @@ bool State::quitRequested()
 
 void State::loadAssets()
 {
-    bg = new Sprite("recursos/img/ocean.jpg");
+    bg.open("img/ocean.jpg");
 }
 
 void State::update(float dt)
@@ -37,8 +36,8 @@ void State::update(float dt)
 
 void State::render()
 {
-    if (bg->isOpen())
-        bg->render(0,0);
+    if (bg.isOpen())
+        bg.render(0,0);
 	else
         throw std::string("bg nao existe");
 
