@@ -8,6 +8,8 @@
 #include <vector>
 #include <memory>
 #include <gameobject.h>
+#include <tileset.h>
+#include <tilemap.h>
 
 class State
 {
@@ -24,6 +26,8 @@ private:
     std::vector<std::unique_ptr<GameObject>> objectArray;
     Sprite bg;
 	bool _quitRequested;
+    TileMap *tileMap;
+    TileSet *tileSet;
 
 };
 

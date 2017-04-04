@@ -1,7 +1,8 @@
 #include "face.h"
 
 Face::Face(float x, float y):
-    sp(new Sprite("img/penguinface.png")),hitpoints(30)
+    hitpoints(30),
+    sp(new Sprite("img/penguinface.png"))
 {
     box=Rect(x,y,sp->getDimencao());
     box.setXY(box.centro());

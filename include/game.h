@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <state.h>
+#include <resources.h>
 #define TPF 33.333333
 
 class Game
@@ -24,6 +25,7 @@ private:
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 	Uint32 nextTime;
+    Resources *resources;
 
 	Uint32 timeLeft();
 	State *state;

@@ -1,0 +1,3 @@
+/home/filipe/programs/idj/trabalho/build/CMakeFiles/edit_cache.dir
+/home/filipe/programs/idj/trabalho/build/CMakeFiles/rebuild_cache.dir
+/home/filipe/programs/idj/trabalho/build/CMakeFiles/GAME.dir

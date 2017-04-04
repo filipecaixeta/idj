@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="GAME" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/filipe/programs/idj/trabalho/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/filipe/programs/idj/trabalho/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/filipe/programs/idj/trabalho/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="GAME">
+         <Option output="/home/filipe/programs/idj/trabalho/build/GAME" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/filipe/programs/idj/trabalho/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/filipe/programs/idj/trabalho/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/6" />
+            <Add directory="/usr/include/c++/6/backward" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/6" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 GAME" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="GAME/fast">
+         <Option output="/home/filipe/programs/idj/trabalho/build/GAME" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/filipe/programs/idj/trabalho/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/filipe/programs/idj/trabalho/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/6" />
+            <Add directory="/usr/include/c++/6/backward" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/6" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 GAME/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/filipe/programs/idj/trabalho/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/face.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/game.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/gameobject.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/rect.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/resources.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/sprite.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/state.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/tilemap.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/tileset.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/include/vec2.h">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/face.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/game.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/main.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/resources.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/sprite.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/state.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/tilemap.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/src/tileset.cpp">
+         <Option target="GAME"/>
+      </Unit>
+      <Unit filename="/home/filipe/programs/idj/trabalho/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>

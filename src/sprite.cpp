@@ -1,21 +1,24 @@
 #include "sprite.h"
 #include "game.h"
+#include <resources.h>
 
 Sprite::Sprite():
+    angle(0),
     texture(nullptr)
 {
 
 }
 
 Sprite::Sprite(std::string file):
-    texture(nullptr),angle(0)
+    angle(0),
+    texture(nullptr)
 {
 	open(file);
 }
 
 Sprite::~Sprite()
 {
-	SDL_DestroyTexture(texture);
+
 }
 
 void Sprite::open(std::string file)
@@ -27,16 +30,12 @@ void Sprite::open(std::string file)
 	if (renderer==nullptr)
 		throw std::string("Renderer nao existe");
 
-	texture = IMG_LoadTexture(renderer,file.c_str());
-	if (texture==nullptr)
-		throw std::string("IMG_LoadTexture falhou: ")+SDL_GetError();
+    texture = Resources::getInstance().getImage(file);
 
 	if (SDL_QueryTexture(texture,NULL,NULL,&width,&height)!=0)
 		throw std::string("SDL_QueryTexture falhou: ")+SDL_GetError();
 	
 	setClip(0,0,width,height);
-	std::string filename = file.substr(file.find_last_of("/") + 1); // So pra unix
-	std::cout << "Sprite " << filename << " carregada com sucesso" << std::endl;
 }
 
 void Sprite::setClip(int x,int y,int w,int h)
@@ -54,6 +53,7 @@ void Sprite::render(int x,int y)
 	dstrect.y = y;
     dstrect.w = clipRect.w;
     dstrect.h = clipRect.h;
+
 	SDL_Renderer *renderer = Game::getInstance().getRenderer();
 
 	if (renderer==nullptr)

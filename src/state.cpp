@@ -10,6 +10,8 @@ State::State():
 State::~State()
 {
     objectArray.clear();
+    delete tileMap;
+    delete tileSet;
 }
 
 bool State::quitRequested()
@@ -20,6 +22,8 @@ bool State::quitRequested()
 void State::loadAssets()
 {
     bg.open("img/ocean.jpg");
+    tileSet = new TileSet(64,64,"img/tileset.png");
+    tileMap = new TileMap("map/tileMap.txt",tileSet);
 }
 
 void State::update(float dt)
@@ -38,15 +42,19 @@ void State::render()
 {
     if (bg.isOpen())
         bg.render(0,0);
-	else
+    else
         throw std::string("bg nao existe");
+
+    tileMap->render(0,0);
 
     for(auto &i:objectArray) i->render();
 }
 
 void State::addObject(float mouseX, float mouseY)
 {
-    std::unique_ptr<GameObject> ptr(new Face(mouseX,mouseY));
+    Vec2 pos(200,0);
+    pos=pos.rotacionado(std::rand()%360);
+    std::unique_ptr<GameObject> ptr(new Face(mouseX+pos.x,mouseY+pos.y));
     ptr->rotaciona(std::rand()%360);
     objectArray.push_back(std::move(ptr));
 }
