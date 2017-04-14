@@ -10,6 +10,7 @@
 #include <gameobject.h>
 #include <tileset.h>
 #include <tilemap.h>
+#include <camera.h>
 
 class State
 {
@@ -21,11 +22,10 @@ public:
 	void update(float dt);
 	void render();
 private:
-    void input();
     void addObject(float mouseX,float mouseY);
     std::vector<std::unique_ptr<GameObject>> objectArray;
     Sprite bg;
-	bool _quitRequested;
+    bool quitRequested_;
     TileMap *tileMap;
     TileSet *tileSet;
 

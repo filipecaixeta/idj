@@ -19,16 +19,23 @@ public:
 	State &getState();
 	static Game &getInstance();
 	void init();
+    float getDeltaTime();
+    Vec2 getWindowDimensions();
 
 private:
-	static Game *instance;
-	SDL_Window *window;
-	SDL_Renderer *renderer;
-	Uint32 nextTime;
-    Resources *resources;
+    void calculateDeltaTime();
 
-	Uint32 timeLeft();
-	State *state;
+    static Game *instance_;
+    SDL_Window *window_;
+    SDL_Renderer *renderer_;
+    Uint32 nextTime_;
+    Resources *resources_;
+    int frameStart_;
+    float dt_;
+    Vec2 windowDim_;
+
+    Uint32 timeLeft();
+    State *state_;
 
 };
 

@@ -1,4 +1,5 @@
 #include "face.h"
+#include <camera.h>
 
 Face::Face(float x, float y):
     hitpoints(30),
@@ -25,7 +26,8 @@ void Face::update(float dt)
 
 void Face::render()
 {
-    sp->render(box.x,box.y);
+    sp->pos=Vec2(box.x,box.y);
+    sp->render();
 }
 
 bool Face::isDead()

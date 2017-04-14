@@ -7,6 +7,7 @@ TileSet::TileSet(int _tileWidth, int _tileHeight, std::string file):tileSet(file
     tileWidth=_tileWidth;
     columns = tileSet.getWidth()/_tileWidth;
     rows = tileSet.getHeight()/_tileHeight;
+    tileSet.fix=false;
 }
 
 TileSet::~TileSet()
@@ -21,7 +22,8 @@ void TileSet::render(unsigned index, float x, float y)
         int j=index/columns;
         int i=index%columns;
         tileSet.setClip(i*tileWidth,j*tileHeight,tileWidth,tileHeight);
-        tileSet.render(x,y);
+        tileSet.pos = Vec2(x,y);
+        tileSet.render();
     }
 }
 

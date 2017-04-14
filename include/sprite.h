@@ -14,12 +14,15 @@ public:
 	~Sprite();
 	void open(std::string file);
 	void setClip(int x,int y,int w,int h);
-	void render(int x,int y);
+    void render();
     Vec2 getDimencao();
 	int getWidth();
 	int getHeight();
 	bool isOpen();
     float angle;
+    Vec2 pos;
+    bool fix;
+
 private:
 	SDL_Texture *texture;
 	int width;

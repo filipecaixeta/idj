@@ -52,21 +52,26 @@ inline int &TileMap::at(int x, int y, int z)
     return tileMatrix[z*mapHeight*mapWidth+y*mapWidth+x];
 }
 
-void TileMap::render(int cameraX, int cameraY)
+void TileMap::render(int x, int y)
 {
     for(int k=0; k<mapDepth; k++)
     {
-        renderLayer(k,cameraX,cameraY);
+        renderLayer(k,x,y);
     }
 }
 
-void TileMap::renderLayer(int layer, int cameraX, int cameraY)
+void TileMap::render(Vec2 pos)
 {
-    for (int j=0,posY=cameraY; j<mapHeight; j++,posY+=tileSet->getTileHeight())
+    render(pos.x,pos.y);
+}
+
+void TileMap::renderLayer(int layer, int x, int y)
+{
+    for (int j=0,posY=y; j<mapHeight; j++,posY+=tileSet->getTileHeight())
     {
-        for(int i=0,posX=cameraX; i<mapWidth; i++,posX+=tileSet->getTileWidth())
+        for(int i=0,posX=x; i<mapWidth; i++,posX+=tileSet->getTileWidth())
         {
-            tileSet->render(at(i,j,layer),posX,posY);
+            tileSet->render(at(i,mapHeight-1-j,layer),posX,posY);
         }
     }
 }

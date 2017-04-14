@@ -1,9 +1,10 @@
 #include "state.h"
 #include <algorithm>
 #include <face.h>
+#include <inputmanager.h>
 
 State::State():
-	_quitRequested(false)
+    quitRequested_(false)
 {
 }
 
@@ -16,19 +17,45 @@ State::~State()
 
 bool State::quitRequested()
 {
-	return _quitRequested;
+    return quitRequested_;
 }
 
 void State::loadAssets()
 {
     bg.open("img/ocean.jpg");
+    bg.fix = true;
     tileSet = new TileSet(64,64,"img/tileset.png");
     tileMap = new TileMap("map/tileMap.txt",tileSet);
 }
 
 void State::update(float dt)
 {
-    input();
+    quitRequested_ =    InputManager::getInstance().quitRequested() ||
+                        InputManager::getInstance().keyPress(SDLK_ESCAPE);
+
+    if (InputManager::getInstance().keyPress(' '))
+    {
+        Vec2 worldPos = InputManager::getInstance().getWorldMouseXY();
+
+        addObject(worldPos.x,worldPos.y);
+    }
+    if (InputManager::getInstance().mousePress(SDL_BUTTON_LEFT))
+    {
+        Vec2 worldPos = InputManager::getInstance().getWorldMouseXY();
+
+        for(int i = objectArray.size() - 1; i >= 0; --i)
+        {
+            Face* face = (Face*) objectArray[i].get();
+            if(face->box.isInside(worldPos.x, worldPos.y))
+            {
+                face->damage(rand() % 10 + 10);
+                break;
+            }
+        }
+    }
+
+    Camera::getInstance().update(dt);
+
     for (auto it=objectArray.begin(); it!=objectArray.end();)
     {
         if ((*it)->isDead())
@@ -41,11 +68,11 @@ void State::update(float dt)
 void State::render()
 {
     if (bg.isOpen())
-        bg.render(0,0);
+        bg.render();
     else
         throw std::string("bg nao existe");
 
-    tileMap->render(0,0);
+    tileMap->render(Camera::getInstance().pos);
 
     for(auto &i:objectArray) i->render();
 }
@@ -57,41 +84,4 @@ void State::addObject(float mouseX, float mouseY)
     std::unique_ptr<GameObject> ptr(new Face(mouseX+pos.x,mouseY+pos.y));
     ptr->rotaciona(std::rand()%360);
     objectArray.push_back(std::move(ptr));
-}
-
-void State::input()
-{
-    SDL_Event event;
-    int mouseX, mouseY;
-
-    SDL_GetMouseState(&mouseX, &mouseY);
-
-    while (SDL_PollEvent(&event))
-    {
-        if(event.type == SDL_QUIT)
-            _quitRequested = true;
-
-        if(event.type == SDL_MOUSEBUTTONDOWN) {
-            for(int i = objectArray.size() - 1; i >= 0; --i)
-            {
-                Face* face = (Face*) objectArray[i].get();
-                if(face->box.isInside((float)mouseX, (float)mouseY))
-                {
-                    face->damage(rand() % 10 + 10);
-                    break;
-                }
-            }
-        }
-        if( event.type == SDL_KEYDOWN )
-        {
-            if( event.key.keysym.sym == SDLK_ESCAPE )
-            {
-                _quitRequested = true;
-            }
-            else
-            {
-                addObject((float)mouseX, (float)mouseY);
-            }
-        }
-    }
 }

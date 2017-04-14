@@ -1,14 +1,19 @@
 #include "game.h"
 #include <cstdlib>
 #include <tilemap.h>
+#include <inputmanager.h>
 
-Game *Game::instance = nullptr;
+Game *Game::instance_ = nullptr;
 
-Game::Game(std::string title, int width, int height)
+Game::Game(std::string title, int width, int height):
+    nextTime_(0),
+    frameStart_(0),
+    dt_(0.0f),
+    windowDim_(width,height)
 {
-	if (instance==nullptr)
+    if (instance_==nullptr)
     {
-		instance = this;
+        instance_ = this;
     }
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) < 0)
@@ -23,88 +28,110 @@ Game::Game(std::string title, int width, int height)
     }
 
     int flags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;// | SDL_WINDOW_FULLSCREEN_DESKTOP
-    window = SDL_CreateWindow(	title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
+    window_ = SDL_CreateWindow(	title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
                                 width,height, flags);
-    if (window==nullptr)
+    if (window_==nullptr)
     {
         throw std::string("Nao foi possivel criar a janela: ") + SDL_GetError();
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_WINDOW_OPENGL);
-    if (renderer==nullptr)
+    renderer_ = SDL_CreateRenderer(window_, -1, SDL_WINDOW_OPENGL);
+    if (renderer_==nullptr)
     {
         throw std::string("Nao foi possivel criar o renderer: ") + SDL_GetError();
     }
 
-    //Futuramente da pra configurar resolucoes maiores por essas 2 linhas
+    //Futuramente da pra configurar resolucoes maiores
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-    SDL_RenderSetLogicalSize(renderer, width, height);
+    SDL_RenderSetLogicalSize(renderer_, width, height);
 	
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
 
     std::srand(SDL_GetTicks());
 
-    resources = new Resources();
+    resources_ = new Resources();
 
 	init();
 }
 
 Game::~Game()
 {
-	delete state;
+    delete state_;
 	IMG_Quit();
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer_);
+    SDL_DestroyWindow(window_);
 	SDL_Quit();
 }
 
 void Game::run()
 {
-	nextTime = SDL_GetTicks() + TPF;
-	while (!state->quitRequested())
+    nextTime_ = SDL_GetTicks() + TPF;
+    while (!state_->quitRequested())
 	{
-        state->update(0);
-        state->render();
+        calculateDeltaTime();
+        InputManager::getInstance().update();
 
-        SDL_RenderPresent( renderer );
+        state_->update(getDeltaTime());
+        state_->render();
+
+        SDL_RenderPresent( renderer_ );
+
+//        std::cout << "Mouse: "<< Camera::getInstance().window2world(InputManager::getInstance().getMouseXY())<<std::endl;
 
         SDL_Delay(timeLeft());
-		nextTime += TPF;
+        nextTime_ += TPF;
 	}
-    resources->clearImages();
+    resources_->clearImages();
 }
 
 SDL_Renderer *Game::getRenderer()
 {
-	return renderer;
+    return renderer_;
 }
 
 State &Game::getState()
 {
-    return *state;
+    return *state_;
 }
 
 Game &Game::getInstance()
 {
-	if (instance==nullptr)
+    if (instance_==nullptr)
 		throw std::string("Instancia de Game eh um nullptr");
 	else
-		return *instance;
+        return *instance_;
 }
 
 Uint32 Game::timeLeft()
 {
 	Uint32 now;
 	now = SDL_GetTicks();
-	if(nextTime <= now)
+    if(nextTime_ <= now)
 		return 0;
 	else
-		return nextTime - now;
+        return nextTime_ - now;
 }
 
 void Game::init()
 {
-	state = new State();
-	state->loadAssets();
+    state_ = new State();
+    state_->loadAssets();
+}
+
+float Game::getDeltaTime()
+{
+    return dt_;
+}
+
+Vec2 Game::getWindowDimensions()
+{
+    return windowDim_;
+}
+
+void Game::calculateDeltaTime()
+{
+    int temp = SDL_GetTicks();
+    dt_ = (float)(temp-frameStart_)/1000.0f;
+    frameStart_ = temp;
 }

@@ -1,9 +1,12 @@
 #include "sprite.h"
 #include "game.h"
 #include <resources.h>
+#include <camera.h>
 
 Sprite::Sprite():
     angle(0),
+    pos(0.0f,0.0f),
+    fix(false),
     texture(nullptr)
 {
 
@@ -11,6 +14,8 @@ Sprite::Sprite():
 
 Sprite::Sprite(std::string file):
     angle(0),
+    pos(0.0f,0.0f),
+    fix(false),
     texture(nullptr)
 {
 	open(file);
@@ -46,11 +51,25 @@ void Sprite::setClip(int x,int y,int w,int h)
 	clipRect.h = h;
 }
 
-void Sprite::render(int x,int y)
+
+
+void Sprite::render()
 {
-	SDL_Rect dstrect;
-	dstrect.x = x;
-	dstrect.y = y;
+    Vec2 cameraPos = Camera::getInstance().pos;
+
+    SDL_Rect dstrect;
+    if (fix==true)
+    {
+        dstrect.x = pos.x;
+        dstrect.y = Game::getInstance().getWindowDimensions().y-pos.y-clipRect.h;
+    }
+    else
+    {
+        Vec2 windowPos = Camera::getInstance().world2window(pos);
+        dstrect.x = windowPos.x;
+        dstrect.y = windowPos.y-clipRect.h;
+    }
+
     dstrect.w = clipRect.w;
     dstrect.h = clipRect.h;
 

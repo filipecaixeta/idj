@@ -3,6 +3,7 @@
 #include <tileset.h>
 #include <vector>
 #include <string>
+#include <vec2.h>
 
 class TileMap
 {
@@ -12,8 +13,9 @@ public:
     void load(std::string file);
     void setTileSet(TileSet *_tileSet);
     int &at(int x, int y, int z);
-    void render(int cameraX,int cameraY);
-    void renderLayer(int layer, int cameraX, int cameraY);
+    void render(int x,int y);
+    void render(Vec2 pos);
+    void renderLayer(int layer, int x, int y);
     int getWidth();
     int getHeight();
     int getDepth();
