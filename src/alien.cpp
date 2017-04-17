@@ -50,7 +50,6 @@ void Alien::update(float dt)
             Minion *minMin;
             for(Minion &minion: minionArray_)
             {
-                mousePos;
                 Vec2 dist = minion.getCenter()-mousePos;
                 if (dist.abs()<minDist.abs())
                 {
@@ -100,7 +99,7 @@ void Alien::setPosition(Vec2 pos)
 
 void Alien::rotaciona(float angle)
 {
-
+	sp_.angle = angle;
 }
 
 Alien::Action::Action(Alien::Action::ActionType type_, float x, float y):

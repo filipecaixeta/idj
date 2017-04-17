@@ -46,5 +46,5 @@ void Minion::shoot(Vec2 pos)
 
 void Minion::rotaciona(float angle)
 {
-
+    sp_.angle = angle;
 }

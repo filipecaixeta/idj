@@ -1,6 +1,5 @@
 #include <state.h>
 #include <algorithm>
-#include <face.h>
 #include <inputmanager.h>
 
 State::State():
