@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include "vec2.h"
+#include <vec2.h>
 
 using namespace std;
 
@@ -23,10 +23,18 @@ public:
         x=v.x;
         y=v.y;
     }
+    Vec2 getXY()
+    {
+        return Vec2(x,y);
+    }
     void setWH(Vec2 v)
     {
         w=v.x;
         h=v.y;
+    }
+    Vec2 getWH()
+    {
+        return Vec2(w,h);
     }
 	Rect operator+(const Vec2& v1) 
 	{

@@ -18,6 +18,10 @@ public:
     Vec2 getDimencao();
 	int getWidth();
 	int getHeight();
+    Vec2 getCenter();
+    void setScaleX(float scale);
+    void setScaleY(float scale);
+    void setScaleXY(Vec2 scale);
 	bool isOpen();
     float angle;
     Vec2 pos;
@@ -27,6 +31,8 @@ private:
 	SDL_Texture *texture;
 	int width;
 	int height;
+    float scaleX_;
+    float scaleY_;
 	SDL_Rect clipRect;
 };
 

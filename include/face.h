@@ -1,6 +1,6 @@
 #ifndef FACE_H
 #define FACE_H
-#include "gameobject.h"
+#include <gameobject.h>
 #include <sprite.h>
 
 class Face : public GameObject

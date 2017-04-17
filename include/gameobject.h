@@ -1,6 +1,7 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
-#include "rect.h"
+#include <rect.h>
+#include <vec2.h>
 
 class GameObject
 {
@@ -11,6 +12,7 @@ public:
     virtual void render()=0;
     virtual bool isDead()=0;
     virtual void rotaciona(float angle)=0;
+    Vec2 getCenter(){return box.getXY()+box.getWH()/2;}
 
     Rect box;
 };

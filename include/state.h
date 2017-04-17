@@ -11,6 +11,7 @@
 #include <tileset.h>
 #include <tilemap.h>
 #include <camera.h>
+#include <alien.h>
 
 class State
 {
@@ -21,13 +22,14 @@ public:
 	void loadAssets();
 	void update(float dt);
 	void render();
+    void addObject(GameObject* ptr);
 private:
-    void addObject(float mouseX,float mouseY);
     std::vector<std::unique_ptr<GameObject>> objectArray;
     Sprite bg;
     bool quitRequested_;
     TileMap *tileMap;
     TileSet *tileSet;
+    Alien *alien;
 
 };
 

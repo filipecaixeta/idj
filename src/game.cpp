@@ -1,4 +1,4 @@
-#include "game.h"
+#include <game.h>
 #include <cstdlib>
 #include <tilemap.h>
 #include <inputmanager.h>
@@ -77,7 +77,7 @@ void Game::run()
 
         SDL_RenderPresent( renderer_ );
 
-//        std::cout << "Mouse: "<< Camera::getInstance().window2world(InputManager::getInstance().getMouseXY())<<std::endl;
+//        std::cout << "Mouse: "<< InputManager::getInstance().getWorldMouseXY() <<std::endl;
 
         SDL_Delay(timeLeft());
         nextTime_ += TPF;

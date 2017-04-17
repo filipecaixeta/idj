@@ -1,4 +1,4 @@
-#include "face.h"
+#include <face.h>
 #include <camera.h>
 
 Face::Face(float x, float y):

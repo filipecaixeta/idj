@@ -1,4 +1,4 @@
-#include "tileset.h"
+#include <tileset.h>
 #include <vec2.h>
 
 TileSet::TileSet(int _tileWidth, int _tileHeight, std::string file):tileSet(file)

@@ -1,5 +1,5 @@
-#include "sprite.h"
-#include "game.h"
+#include <sprite.h>
+#include <game.h>
 #include <resources.h>
 #include <camera.h>
 
@@ -7,7 +7,9 @@ Sprite::Sprite():
     angle(0),
     pos(0.0f,0.0f),
     fix(false),
-    texture(nullptr)
+    texture(nullptr),
+    scaleX_(1),
+    scaleY_(1)
 {
 
 }
@@ -16,7 +18,9 @@ Sprite::Sprite(std::string file):
     angle(0),
     pos(0.0f,0.0f),
     fix(false),
-    texture(nullptr)
+    texture(nullptr),
+    scaleX_(1),
+    scaleY_(1)
 {
 	open(file);
 }
@@ -70,8 +74,8 @@ void Sprite::render()
         dstrect.y = windowPos.y-clipRect.h;
     }
 
-    dstrect.w = clipRect.w;
-    dstrect.h = clipRect.h;
+    dstrect.w = clipRect.w*scaleX_;
+    dstrect.h = clipRect.h*scaleY_;
 
 	SDL_Renderer *renderer = Game::getInstance().getRenderer();
 
@@ -81,7 +85,7 @@ void Sprite::render()
         throw std::string("Sprite nao existe");
 
     SDL_RenderCopyEx(renderer,texture,&clipRect,&dstrect,
-                     angle,NULL,SDL_FLIP_NONE);
+                     angle*180/M_PI,NULL,SDL_FLIP_NONE);
 
 }
 
@@ -97,7 +101,28 @@ int Sprite::getWidth()
 
 int Sprite::getHeight()
 {
-	return height;
+    return height;
+}
+
+Vec2 Sprite::getCenter()
+{
+    return pos+getDimencao()/2;
+}
+
+void Sprite::setScaleX(float scale)
+{
+    scaleX_ = scale;
+}
+
+void Sprite::setScaleY(float scale)
+{
+    scaleY_ = scale;
+}
+
+void Sprite::setScaleXY(Vec2 scale)
+{
+    scaleX_ = scale.x;
+    scaleY_ = scale.y;
 }
 
 bool Sprite::isOpen()

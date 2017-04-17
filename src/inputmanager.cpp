@@ -1,4 +1,4 @@
-#include "inputmanager.h"
+#include <inputmanager.h>
 #include <algorithm>
 #include <iostream>
 #include <camera.h>
